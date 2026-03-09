@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
