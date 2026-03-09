@@ -1,42 +1,37 @@
-# Sistema de Planeación Estratégica (Balanced Scorecard)
+# Sistema de Planeación Estratégica
 
-Base inicial para un sistema web universitario de planeación estratégica sobre **Laravel 12 + Livewire + Blade + Flux UI + Tailwind + MySQL**.
-
-## Estado actual
-
-Se dejó preparada la estructura visual y modular del sistema, incluyendo:
-
-- Layout administrativo con sidebar colapsable, topbar, breadcrumbs y dark mode.
-- Navegación base para módulos estratégicos.
-- Componentes Livewire de página listos para crecer.
-- Configuración de rutas por módulo.
-
-> ⚠️ Este entorno no permitió descargar dependencias externas (Packagist/GitHub). Por eso, el starter kit oficial de autenticación se dejó preparado para instalarse con comandos locales cuando tengas conectividad.
+Proyecto base ejecutable sobre **Laravel 12 + Livewire + Starter Kit oficial Livewire + Flux UI + Vite + MySQL**.
 
 ## Requisitos
 
 - PHP 8.2+
 - Composer 2+
-- Node 20+
+- Node.js 20+
+- NPM 10+
 - MySQL 8+
 
-## Configuración local
+## Instalación local (MySQL)
 
-1. Instala dependencias:
+1. Clonar el repositorio e instalar dependencias de PHP:
 
 ```bash
 composer install
+```
+
+2. Instalar dependencias frontend:
+
+```bash
 npm install
 ```
 
-2. Crea y configura entorno:
+3. Crear archivo de entorno y llave de aplicación:
 
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-3. Configura MySQL en `.env`:
+4. Configurar MySQL en `.env`:
 
 ```env
 DB_CONNECTION=mysql
@@ -44,42 +39,50 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=planeacion_estrategica
 DB_USERNAME=root
-DB_PASSWORD=secret
+DB_PASSWORD=tu_password
 ```
 
-4. Ejecuta migraciones:
+5. Ejecutar migraciones y seeders:
 
 ```bash
-php artisan migrate
+php artisan migrate --seed
 ```
 
-5. Instala starter kit oficial Livewire (autenticación):
+6. Instalar starter kit oficial de Livewire (autenticación) si necesitas regenerar assets del kit:
 
 ```bash
-php artisan install:livewire
+php artisan breeze:install livewire
 ```
 
-6. Instala Flux UI:
+> El proyecto ya está preparado para Livewire/Flux, pero este comando te permite reinstalar las pantallas base de auth del starter kit oficial en entornos nuevos.
+
+7. (Opcional) Reinstalar assets de Flux UI:
 
 ```bash
-composer require livewire/flux
 php artisan flux:install
 ```
 
-7. Levanta el entorno:
+8. Iniciar entorno local:
 
 ```bash
 php artisan serve
 npm run dev
 ```
 
-## Estructura base
+## Comandos de verificación
 
-- `app/Livewire/Pages`: páginas Livewire por módulo.
-- `app/Support/Navigation`: definición central de navegación.
-- `resources/views/layouts/app-shell.blade.php`: layout principal administrativo.
-- `resources/views/livewire/pages/module-page.blade.php`: plantilla base de módulos.
-- `routes/web.php`: rutas principales del sistema.
+```bash
+php artisan optimize:clear
+php artisan route:list
+```
+
+## Estructura funcional incluida
+
+- Esqueleto Laravel completo (`artisan`, `bootstrap/`, `config/`, `database/`, `public/`, `storage/`, `tests/`).
+- Navegación principal reutilizable en `App\Support\Navigation\MainNavigation`.
+- Módulos estratégicos como páginas Livewire en `app/Livewire/Pages`.
+- Layout administrativo y estructura visual en `resources/views/layouts/app-shell.blade.php`.
+- Plantilla visual de módulos en `resources/views/livewire/pages/module-page.blade.php`.
 
 ## Módulos iniciales
 

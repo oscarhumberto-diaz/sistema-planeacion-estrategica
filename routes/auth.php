@@ -2,14 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Auth routes
-|--------------------------------------------------------------------------
-|
-| Este archivo queda reservado para las rutas generadas por
-| `php artisan install:livewire` del starter kit oficial.
-|
-*/
+Route::middleware('guest')->group(function (): void {
+    Route::view('/login', 'auth.placeholder-login')->name('login');
+});
 
-Route::view('/login', 'auth.placeholder-login')->name('login');
+Route::post('/logout', function () {
+    auth()->logout();
+
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return redirect('/login');
+})->middleware('auth')->name('logout');
