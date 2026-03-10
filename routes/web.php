@@ -13,7 +13,7 @@ use App\Livewire\Pages\ReportesPage;
 use App\Livewire\Pages\RiesgosPage;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/dashboard');
+Route::view('/', 'welcome')->name('welcome');
 
 Route::middleware(['auth'])->group(function (): void {
     Route::get('/dashboard', DashboardPage::class)->name('dashboard');
